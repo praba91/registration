@@ -1,0 +1,51 @@
+<form class="my-form" #loginForm='ngForm' (ngSubmit)="Submit(loginForm)">
+	<mat-card id="card" style="text-align: center;margin-top:200px;margin-left:400px;margin-right:400px;">
+		<mat-card-title>USER LOGIN</mat-card-title>
+		<mat-card-content>
+	
+			<mat-form-field class="form-element">
+			
+				<input matInput placeholder="{{title.usernameTitle}}" autocomplete="off" [(ngModel)]="username" name="username"  required>
+				<mat-error>
+				{{usernameErrorMessage}}
+				</mat-error>
+			</mat-form-field>
+			
+			<mat-form-field class="form-element">
+				
+				<input matInput type="password" placeholder="{{title.passwordTitle}}" autocomplete="off" [(ngModel)]="password" name="password"  required>
+				<mat-error>{{passwordErrorMessage}}</mat-error>
+			</mat-form-field>
+				
+			
+		</mat-card-content>
+		<mat-card-actions>
+			<button mat-raised-button color="primary" type="submit" style="margin-right:5px;">LOGIN</button>
+			<button mat-raised-button color="primary" (click)="registerPage()" style="margin-right:5px;">REGISTER</button>
+			<button mat-raised-button color="primary" >
+				View
+			</button>
+			<!-- <button mat-raised-button color="primary" (click)="searchByName()">
+				Get data by name
+			</button> -->
+		</mat-card-actions>
+	</mat-card>
+</form>
+<!-- <div style="width:100%">
+<table>
+<thead>
+<tr><th>Name</th><th>Username</th><th>password</th><th>Edit</th><th>Delete</th></tr>
+</thead>
+<tbody>
+<tr *ngFor="let dt of allData; index as i;">
+<td>{{dt.payload.doc.data().name}}</td>
+<td>{{dt.payload.doc.data().username}}</td>
+<td>{{dt.payload.doc.data().password}}</td>
+<td><a class="fa fa-edit" title="Edit" (click)="update(dt.payload.doc.id)"></a></td>
+<td><a class="fa fa-remove" title="Remove" (click)="delete(dt.payload.doc.id)"></a></td>
+</tr>
+</tbody>
+</table>
+
+</div> -->
+

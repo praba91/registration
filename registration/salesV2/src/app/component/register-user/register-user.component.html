@@ -1,0 +1,177 @@
+<div class="container">
+
+<div class="row">
+	<div class="col-lg-3 col-md-3 col-sm-3">
+     &nbsp;
+	</div>
+	<div class="col-lg-6 col-md-6 col-sm-6">
+		
+		<mat-toolbar color="primary">
+			<span class="fill-remaining-space">User registration</span>
+		</mat-toolbar>
+
+		<div class="container" *ngIf="!post; else forminfo" novalidate> 
+			<form [formGroup]="formGroup"  class="form" (ngSubmit)="onSubmit()">
+				<mat-form-field class="form-element">
+					<mat-label>{{registerUserTitle.firstNameTitle}}</mat-label>
+					<input matInput placeholder="First name" formControlName="firstname" autocomplete="off" [errorStateMatcher]="matcher">
+					<mat-error *ngIf="!formGroup.controls['firstname'].valid && formGroup.controls['firstname'].touched || !formGroup.controls['firstname'].dirty">
+						{{ getErrorFirstName() }}
+					</mat-error>
+				</mat-form-field>
+
+				<mat-form-field class="form-element">
+					<mat-label>{{registerUserTitle.lastNameTitle}}</mat-label>
+					<input matInput placeholder="Last name" formControlName="lastname" autocomplete="off" [errorStateMatcher]="matcher">
+					<mat-error *ngIf="!formGroup.controls['lastname'].valid && formGroup.controls['lastname'].touched || !formGroup.controls['lastname'].dirty">
+						{{ getErrorLastName() }}
+					</mat-error>
+				</mat-form-field>
+				<mat-form-field class="form-element">
+					<mat-label>{{registerUserTitle.fullNameTitle}}</mat-label>
+					<input matInput placeholder="Name" formControlName="name" autocomplete="off" [errorStateMatcher]="matcher">
+					<mat-error *ngIf="!name.valid && name.touched || !name.dirty">
+						{{ getErrorFullName() }}
+					</mat-error>
+				</mat-form-field>
+				<mat-radio-group formControlName="gender" >
+					<mat-label class="label">{{registerUserTitle.genderTitle}}</mat-label>
+					<mat-radio-button  value="1">Male</mat-radio-button>
+					<mat-radio-button value="2">Female</mat-radio-button>
+					<mat-error *ngIf="!formGroup.controls['gender'].valid && formGroup.controls['gender'].touched ">
+						{{ getErrorGender() }}
+					</mat-error>
+				</mat-radio-group>
+				<!-- <mat-form-field class="form-element">
+					<mat-label>{{registerUserTitle.dobTitle}}</mat-label>
+					<input matInput [matDatepicker]="myDatepicker" formControlName="dob" autocomplete="off" [errorStateMatcher]="matcher">
+					<mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+					<mat-datepicker #myDatepicker></mat-datepicker>
+					<mat-error *ngIf="!formGroup.controls['dob'].valid && formGroup.controls['dob'].touched || !formGroup.controls['dob'].dirty">
+						{{ getErrorDOB() }}
+					</mat-error>
+				</mat-form-field> -->
+				<mat-form-field class="form-element">
+					<mat-label>{{registerUserTitle.emailTitle}}</mat-label>
+					<input matInput placeholder="Emailaddress" formControlName="email" autocomplete="off" [errorStateMatcher]="matcher">
+					<mat-error *ngIf="!formGroup.controls['email'].valid && formGroup.controls['email'].touched || !formGroup.controls['email'].dirty">
+						{{ getErrorEmail() }}
+					</mat-error>
+				</mat-form-field>
+				<mat-form-field class="form-element">
+					<mat-label>{{registerUserTitle.mobileTitle}}</mat-label>
+					<input matInput placeholder="Name" type="text"  formControlName="mobile" autocomplete="off" [errorStateMatcher]="matcher">
+					<mat-error *ngIf="!mobile.valid && mobile.touched || !mobile.dirty">
+						{{ getErrorMobile() }}
+					</mat-error>
+				</mat-form-field>
+					<!-- <mat-form-field class="form-element">
+						<mat-label>{{registerUserTitle.countryTitle}}</mat-label>
+					<mat-select formControlName="country" placeholder="Country" [errorStateMatcher]="matcher">
+						<mat-option [value]="1">India</mat-option>
+						<mat-option [value]="2">Pakistan</mat-option>
+						<mat-option [value]="3">Australia</mat-option>
+					</mat-select>
+					<mat-error *ngIf="!formGroup.controls['country'].valid && formGroup.controls['country'].touched || !formGroup.controls['country'].dirty">
+						{{ getErrorCountry() }}
+					</mat-error>
+				</mat-form-field>
+                <mat-form-field class="form-element">
+					<mat-label>{{registerUserTitle.stateTitle}}</mat-label>
+					<input matInput placeholder="state" formControlName="state" autocomplete="off" [errorStateMatcher]="matcher">
+					<mat-error *ngIf="!state.valid && state.touched || !state.dirty">
+						{{ getErrorState() }}
+					</mat-error>
+				</mat-form-field>
+				 <mat-form-field class="form-element">
+					<mat-label>{{registerUserTitle.cityTitle}}</mat-label>
+					<input matInput placeholder="city" formControlName="city" [errorStateMatcher]="matcher">
+					<mat-error *ngIf="!city.valid && city.touched || !city.dirty">
+						{{ getErrorCity()}}
+					</mat-error>
+				</mat-form-field> -->
+			<mat-form-field class="form-element">
+					<mat-label>{{registerUserTitle.addressTitle}}</mat-label>
+					<textarea matInput placeholder="Address" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" formControlName="address" autocomplete="off" [errorStateMatcher]="matcher"></textarea >
+					<mat-error *ngIf="!formGroup.controls['address'].valid && formGroup.controls['address'].touched || !formGroup.controls['address'].dirty">
+						{{ getErrorAddress() }}
+					</mat-error>
+				</mat-form-field>
+
+				<!-- <mat-form-field class="form-element">
+					<mat-label>{{registerUserTitle.tempAddressTitle}}</mat-label>
+					<textarea matInput placeholder="Temporary Address" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" formControlName="tempaddress" autocomplete="off" [errorStateMatcher]="matcher"></textarea>
+					<mat-error *ngIf="!formGroup.controls['tempaddress'].valid && formGroup.controls['tempaddress'].touched || !formGroup.controls['tempaddress'].dirty">
+						
+                  {{ getErrorTempAddress() }}
+					</mat-error>
+				</mat-form-field> -->
+              <mat-form-field class="form-element">
+					<mat-label>{{registerUserTitle.userNameTitle}}</mat-label>
+					<input matInput placeholder="Username" formControlName="username" autocomplete="off" [errorStateMatcher]="matcher">
+					<mat-hint>Enter a username of without space</mat-hint>
+					<mat-error *ngIf="!formGroup.controls['username'].valid && formGroup.controls['username'].touched || !formGroup.controls['username'].dirty">
+						{{ getErrorUsername() }}
+					</mat-error>
+				</mat-form-field>
+				<mat-form-field class="form-element">
+					<mat-label>{{registerUserTitle.passwordTitle}}</mat-label>
+					<input matInput placeholder="Password" type="password" formControlName="password" autocomplete="off" [errorStateMatcher]="matcher">
+					<mat-hint>Choose a password of at least eight characters, one uppercase letter and one number</mat-hint>
+					<mat-error *ngIf="!formGroup.controls['password'].valid && formGroup.controls['password'].touched || !formGroup.controls['password'].dirty">
+						{{ getErrorPassword() }}
+					</mat-error>
+				</mat-form-field>
+				<!-- <mat-form-field class="form-element">
+					<mat-label>{{registerUserTitle.favoriteColorTitle}}</mat-label>
+					<input matInput placeholder="Favorite colors " type="color" formControlName="favoritecolor" autocomplete="off" [errorStateMatcher]="matcher" >					
+					<mat-error *ngIf="!formGroup.controls['favoritecolor'].valid && formGroup.controls['favoritecolor'].touched || !formGroup.controls['favoritecolor'].dirty">
+						{{ getErrorColor() }}
+					</mat-error>
+				</mat-form-field>
+				<mat-form-field class="form-element">
+					<mat-label>{{registerUserTitle.websiteTitle}}</mat-label>
+					<input matInput placeholder="Website" type="url" formControlName="website" autocomplete="off" [errorStateMatcher]="matcher">					
+					<mat-error *ngIf="!formGroup.controls['website'].valid && formGroup.controls['website'].touched || !formGroup.controls['website'].dirty">
+						{{ getErrorWebsite() }}
+					</mat-error>
+				</mat-form-field>
+				<mat-form-field class="form-element">
+					<mat-label>{{registerUserTitle.telephoneTitle}}</mat-label>
+					<input matInput placeholder="Telephone no" type="number" formControlName="telephone" min="0" autocomplete="off"  [errorStateMatcher]="matcher">
+					<mat-error *ngIf="!formGroup.controls['telephone'].valid && formGroup.controls['telephone'].touched || !formGroup.controls['telephone'].dirty ">
+						{{ getErrorTelephone() }}
+					</mat-error>
+				</mat-form-field>
+				<div class="form-element">
+					<mat-checkbox formControlName="agree" value="1">Agree</mat-checkbox>
+					<mat-error *ngIf="!formGroup.controls['agree'].valid && formGroup.controls['agree'].touched">
+						{{ getErrorAgree() }}
+					</mat-error>
+				</div> -->
+
+			<!-- 	<div class="form-element">
+					<mat-checkbox formControlName="validate" value="1">Name min. 3 characters</mat-checkbox>
+				</div> -->
+
+				<div class="form-element">
+					<!-- <button mat-raised-button color="primary" type="submit" class="button" [disabled]="!formGroup.valid">Register</button> -->
+					<button mat-raised-button color="primary" type="submit" class="button"  >Register</button>
+				</div>
+
+			</form>
+		</div>
+
+		<!-- <ng-template #forminfo>
+			<div class="container">
+				{{ post | json }}
+			</div>
+		</ng-template> -->
+	</div>
+	<div class="col-lg-3 col-md-3 col-sm-3">
+
+	</div>
+
+</div>
+
+</div>
